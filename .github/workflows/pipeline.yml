@@ -1,21 +1,19 @@
-name: Pipeline
-
-on: [push]
-env:
-  APPLICATION_NAME: app2
+name: pipeline
+on: push
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Python environment
-      uses: actions/setup-python@v5.3.0
-    - name: Install requirements
-      run: pip install --quiet --requirement requirements.txt
-    - name: Lint code
-      run: |
-        flake8 --ignore=E501,E231 *.py
-        pylint --disable=C0301 *.py
-    - name: Run unit tests
-      run: |
-        python -m unittest --verbose --failfast
+      - name: Run test
+        run: python app.py
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: 'pipeline'
+          path: .
