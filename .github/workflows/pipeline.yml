@@ -4,9 +4,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        run: actions/checkout@v2
+      
       - name: Run test
         run: python app.py
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
