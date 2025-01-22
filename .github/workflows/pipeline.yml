@@ -4,5 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: Jamie1606/test-custom-action@v1
+      - uses: Jamie1606/test-custom-action@v1.1
+        with:
+          name: "Test"
       
