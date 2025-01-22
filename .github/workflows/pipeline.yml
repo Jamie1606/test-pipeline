@@ -4,20 +4,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - uses: Jamie1606/test-custom-action@v1
       
-      - name: Run test
-        run: python app.py
-  build:
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: 'pipeline'
-          path: .
